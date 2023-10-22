@@ -1,0 +1,12 @@
+print("Добро пожаловать, вы заполняете анкету")
+name = input("Введите Ваше имя: ")
+last_name = input("Введите Вашу фамилию: ")
+birth_year = input("Введите Ваш год рождения: ")
+first_answer = input("Нравится ли Вам курс? ")
+second_answer = input("Что Вы ожидаете в дальнейших занятиях? ")
+
+print("Вы заполнили такие данные:")
+print(f"Вас зовут {name} {last_name}")
+print(f"Вам {2023 - int(birth_year)} лет")
+print(f"Ваш ответ к первому вопросу: {first_answer}")
+print(f"Ваш ответ ко второму вопросу: {second_answer}")
