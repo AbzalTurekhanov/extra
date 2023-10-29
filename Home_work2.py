@@ -31,9 +31,9 @@ print(result_hours, result_minutes)
 num1, num2 = int(input()), int(input())
 
 if num1 > num2:
-    print(num1)
+    print(1)
 else:
-    print(num2 if num2 > num1 else 0)
+    print(2 if num2 > num1 else 0)
 
 # fourth task
 
@@ -70,12 +70,12 @@ print(num1, num2, num3)
 # seventh task
 
 
-a, b, c = int(input()), int(input()), int(input())
+a, b, c = float(input()), float(input()), float(input())
 
-D = b ** 2 - 4 * a * c
+D = b ** 2 - (4 * a * c)
 if D > 0:
-    x1 = (-b + D ** (1 / 2)) / 2 * a
-    x2 = (-b - D ** (1 / 2)) / 2 * a
+    x1 = (-b + D ** 0.5) / (2 * a)
+    x2 = (-b - D ** 0.5) / (2 * a)
     print(x1, x2)
 elif D == 0:
     x = -b / (2 * a)
