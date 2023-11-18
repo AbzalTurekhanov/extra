@@ -66,7 +66,7 @@ def delete_user(users: list[dict]) -> None:
     print(f'{username} not found in list')
 
 
-def authorization(users: list[dict]) -> None:
+def authorization(users: list[dict]) -> bool | dict:
     username = input('enter username: ')
     for user in users:
         if user['username'] == username:
@@ -74,8 +74,9 @@ def authorization(users: list[dict]) -> None:
             while user['password'] != password:
                 password = input('wrong password, try again: ')
             print('you successfully logged in to the system')
-            return
+            return user
     print(f'{username} not found in list')
+    return False
 
 
 def is_valid_option(option: str) -> bool:
@@ -87,17 +88,30 @@ def is_valid_option(option: str) -> bool:
 
 
 users_list = []
+login = False
 
 while True:
-    print(
-        'Choose one option',
-        '1. Create user',
-        '2. Show list of users',
-        '3. Delete user from list',
-        '4. Authorization',
-        '5. Exit',
-        sep='\n'
-    )
+    if login:
+        print(
+            f'Hello, {login["username"]}',
+            'Choose one option',
+            '1. Create user',
+            '2. Show list of users',
+            '3. Delete user from list',
+            '4. Logout',
+            '5. Exit',
+            sep='\n'
+        )
+    else:
+        print(
+            'Choose one option',
+            '1. Create user',
+            '2. Show list of users',
+            '3. Delete user from list',
+            '4. Authorization',
+            '5. Exit',
+            sep='\n'
+        )
     option = input('enter option: ')
     while not is_valid_option(option):
         print('enter valid option, option must be digit in range from 1 to 5')
@@ -110,8 +124,13 @@ while True:
     elif option == '3':
         delete_user(users_list)
     elif option == '4':
-        authorization(users_list)
+        if login:
+            login = False
+            print('you successfully logged out from the system')
+        else:
+            login = authorization(users_list)
     elif option == '5':
+        print("Finished")
         exit()
     else:
         print('Unexpected error, inform tech support')
